@@ -1,11 +1,15 @@
 package com.repository;
 
 import com.domain.Order;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.apache.log4j.spi.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrderRepositoryImpl implements OrderRepository {
+//    private static final Logger logger = LogManager.getLogger()
     List<Order> orders = new ArrayList<>();
 
     public OrderRepositoryImpl() {

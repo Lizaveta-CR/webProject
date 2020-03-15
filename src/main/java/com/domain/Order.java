@@ -1,14 +1,17 @@
 package com.domain;
 
+import javax.persistence.*;
 
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.NotNull;
-
+@Entity
+@Table(name = "ORDER")
 public class Order {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-//    @NotNull
+
     private String name;
-//    @DecimalMin("0.00")
+
     private Double price;
 
     public Order() {

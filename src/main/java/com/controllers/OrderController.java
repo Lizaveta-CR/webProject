@@ -84,7 +84,7 @@ public class OrderController {
             order.setPrice(doublePrice);
 
             orderService.save(order);
-            return "redirect:/order";
+            return "order";
 
         } catch (Exception e) {
             return "error";
@@ -96,7 +96,7 @@ public class OrderController {
         Order orderById = orderService.getOrderById(id);
 
         orderService.delete(orderById);
-        return "redirect:/order";
+        return "order";
     }
 
     @RequestMapping(value = "/edit-order/{id}")
@@ -112,7 +112,7 @@ public class OrderController {
         try {
             order.getPrice();
             orderService.update(order);
-            return "redirect:/order";
+            return "order";
         } catch (Exception e) {
             return "error";
         }
