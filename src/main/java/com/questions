@@ -1,0 +1,66 @@
+1)Проверка полей(при добавлении в функцию spring - ошибка)
+Ответ: в label "error", передавать модель, когда в полях есть ошибка, то они видимы, иначе они автоматически невидимые
+
+
+сделать 1 messages.property единый (без расширения), на основании его будет все остальное выводиться!
+
+
+cff.disable()
+
+lbl.page=Список всех товаров
+lbl.name=Наименование товара
+lbl.price=Стоимость
+lbl.action=Действие
+lbl.add=Добавить товар
+lbl.edit=Редактировать
+lbl.delete=Удалить
+lbl.addTitle=Добавить товар
+lbl.buttonAdd=Добавить
+lbl.currentLocale=Текущая локаль
+lbl.editPage=Редактировать заказ
+lbl.editButton=Редактировать
+lbl.errorPage=Уууупс,что-то пошло не так
+lbl.errorMessage=Произошла ошибка при введении стоимости
+lbl.addOrderEmptyMes=Заполните все поля!
+lbl.addOrderEnterNumber=Введите число!
+lbl.errorExit=Выйти
+lbl.loginName=Имя Пользователя
+lbl.loginPass=Пароль
+lbl.Submit=Подтвердить
+lbl.welcome=Добро пожаловать!
+lbl.home=Домой
+lbl.logout=Выйти из аккаунта
+lbl.myprofile=Мой профиль
+lbl.loginas=Зайти как
+lbl.user=Пользователь
+lbl.admin=Админ
+lbl.indexTitle=Выберите, как вы хотите зайти
+
+lbl.page=List of all orders
+lbl.name=Order name
+lbl.price=Price
+lbl.action=Action
+lbl.add=Add order
+lbl.edit=Edit
+lbl.delete=Delete
+lbl.addTitle=Add order
+lbl.buttonAdd=Add
+lbl.currentLocale=Current locale
+lbl.editPage=Edit order
+lbl.editButton=Edit
+lbl.errorPage=Error occured
+lbl.errorMessage=Error occurred while entering price
+lbl.addOrderEmptyMes=Fill all fields!
+lbl.addOrderEnterNumber=Enter number!
+lbl.errorExit=Exit
+lbl.loginName=UserName
+lbl.loginPass=Password
+lbl.Submit=Submit
+lbl.welcome=Welcome!
+lbl.home=Home
+lbl.logout=Logout
+lbl.myprofile=My Profile
+lbl.loginas=Login as
+lbl.user=User
+lbl.admin=Admin
+lbl.indexTitle=Select how you want to authorize
