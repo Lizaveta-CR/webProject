@@ -9,7 +9,7 @@ public interface OrderRepository {
 
     void save(Order order);
 
-    void delete(Order order);
+    void delete(int id);
 
     Order getOrderById(Integer id);
 

@@ -1,17 +1,17 @@
 package com.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Table(name = "ORDER")
-public class Order {
+@Table(name = "Order")
+public class Order implements Serializable {
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    @Column(name = "name")
     private String name;
-
+    @Column(name = "price")
     private Double price;
 
     public Order() {
@@ -39,5 +39,14 @@ public class Order {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                '}';
     }
 }

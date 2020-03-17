@@ -72,49 +72,32 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/add-order", method = RequestMethod.POST)
-    public String addOrder(@RequestParam(value = "name") String name, @RequestParam(value = "price") String price) {
-        try {
-            Order order = new Order();
-            if (name != null && name.matches("\\D*")) {
-                order.setName(name);
-            } else {
-                return "error";
-            }
-            Double doublePrice = Double.valueOf(price);
-            order.setPrice(doublePrice);
-
+    public String addOrder(@ModelAttribute("order") Order order) {
+        if (order.getId() == 0) {
             orderService.save(order);
-            return "order";
-
-        } catch (Exception e) {
-            return "error";
+        } else {
+            orderService.update(order);
         }
+        return "order";
     }
 
     @RequestMapping(value = "delete/{id}")
     public String deleteOrder(@PathVariable Integer id) {
-        Order orderById = orderService.getOrderById(id);
-
-        orderService.delete(orderById);
+        orderService.delete(id);
         return "order";
     }
 
     @RequestMapping(value = "/edit-order/{id}")
     public String updateOrderPage(@PathVariable Integer id, Model model) {
         Order order = orderService.getOrderById(id);
-
         model.addAttribute("order", order);
+        List<Order> orderList = orderService.getAll();
+        model.addAttribute("orderList", orderList);
         return "edit-form";
     }
-
-    @RequestMapping(value = "/edit-order", method = RequestMethod.POST)
-    public String updateOrder(@ModelAttribute("order") Order order) {
-        try {
-            order.getPrice();
-            orderService.update(order);
-            return "order";
-        } catch (Exception e) {
-            return "error";
-        }
-    }
+//    @RequestMapping(value = "/edit-order", method = RequestMethod.POST)
+//    public String updateOrder(@ModelAttribute("order") Order order) {
+//        orderService.update(order);
+//        return "order";
+//    }
 }

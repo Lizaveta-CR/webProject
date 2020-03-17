@@ -1,60 +1,50 @@
 package com.repository;
 
 import com.domain.Order;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
-import org.apache.log4j.spi.LoggerFactory;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class OrderRepositoryImpl implements OrderRepository {
-//    private static final Logger logger = LogManager.getLogger()
-    List<Order> orders = new ArrayList<>();
+    private SessionFactory sessionFactory;
 
-    public OrderRepositoryImpl() {
-        Order orderF = new Order();
-        orderF.setId(1);
-        orderF.setName("Pineapple");
-        orderF.setPrice(3.5);
-        orders.add(orderF);
-
-        Order orderS = new Order();
-        orderS.setId(2);
-        orderS.setName("Watermelon");
-        orderS.setPrice(4.1);
-        orders.add(orderS);
+    public void setSessionFactory(SessionFactory sf) {
+        this.sessionFactory = sf;
     }
 
+    @SuppressWarnings("unchecked")
     public List<Order> getAll() {
-        return orders;
+        Session session = this.sessionFactory.getCurrentSession();
+        List<Order> orderList = session.createQuery("from Order").list();
+        return orderList;
     }
 
     @Override
     public void save(Order order) {
-        orders.add(order);
+        Session session = this.sessionFactory.getCurrentSession();
+        session.persist(order);
     }
 
     @Override
-    public void delete(Order order) {
-        orders.remove(order);
+    public void delete(int id) {
+        Session session = this.sessionFactory.getCurrentSession();
+        Order order = (Order) session.load(Order.class, new Integer(id));
+        if (null != order) {
+            session.delete(order);
+        }
     }
 
     @Override
     public Order getOrderById(Integer id) {
-        for (Order order : orders) {
-            if (order.getId() == id) {
-                return order;
-            }
-        }
-        return null;
+        Session session = this.sessionFactory.getCurrentSession();
+        Order order = (Order) session.load(Order.class, new Integer(id));
+        return order;
     }
 
     @Override
     public void update(Order order) {
-        Order orderGet = orders.get(order.getId());
-
-        orderGet.setName(order.getName());
-        orderGet.setPrice(order.getPrice());
+        Session session = this.sessionFactory.getCurrentSession();
+        session.update(order);
     }
 }
