@@ -11,31 +11,31 @@ public class OrderServiceImpl implements OrderService {
     OrderRepository repository = new OrderRepositoryImpl();
 
     @Override
-    @Transactional
+//    @Transactional
     public List<Order> getAll() {
         return repository.getAll();
     }
 
     @Override
-    @Transactional
+//    @Transactional
     public void save(Order order) {
         repository.save(order);
     }
 
     @Override
-    @Transactional
+//    @Transactional
     public void delete(int id) {
         repository.delete(id);
     }
 
     @Override
-    @Transactional
+//    @Transactional
     public Order getOrderById(Integer id) {
         return repository.getOrderById(id);
     }
 
     @Override
-    @Transactional
+//    @Transactional
     public void update(Order order) {
         repository.update(order);
     }

@@ -95,9 +95,9 @@ public class OrderController {
         model.addAttribute("orderList", orderList);
         return "edit-form";
     }
-//    @RequestMapping(value = "/edit-order", method = RequestMethod.POST)
-//    public String updateOrder(@ModelAttribute("order") Order order) {
-//        orderService.update(order);
-//        return "order";
-//    }
+    @RequestMapping(value = "/edit-order", method = RequestMethod.POST)
+    public String updateOrder(@ModelAttribute("order") Order order) {
+        orderService.update(order);
+        return "order";
+    }
 }

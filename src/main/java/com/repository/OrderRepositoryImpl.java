@@ -1,50 +1,46 @@
 package com.repository;
 
 import com.domain.Order;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 public class OrderRepositoryImpl implements OrderRepository {
+    @Autowired
     private SessionFactory sessionFactory;
 
-    public void setSessionFactory(SessionFactory sf) {
-        this.sessionFactory = sf;
+    protected Session getSession() {
+        return sessionFactory.getCurrentSession();
     }
 
     @SuppressWarnings("unchecked")
     public List<Order> getAll() {
-        Session session = this.sessionFactory.getCurrentSession();
-        List<Order> orderList = session.createQuery("from Order").list();
-        return orderList;
+        Criteria criteria = getSession().createCriteria(Order.class);
+        return (List) criteria.list();
     }
 
     @Override
     public void save(Order order) {
-        Session session = this.sessionFactory.getCurrentSession();
-        session.persist(order);
+        getSession().save(order);
     }
 
     @Override
     public void delete(int id) {
-        Session session = this.sessionFactory.getCurrentSession();
-        Order order = (Order) session.load(Order.class, new Integer(id));
-        if (null != order) {
-            session.delete(order);
-        }
+        Order order = (Order) getSession().get(Order.class, id);
+        getSession().delete(order);
     }
 
     @Override
     public Order getOrderById(Integer id) {
-        Session session = this.sessionFactory.getCurrentSession();
-        Order order = (Order) session.load(Order.class, new Integer(id));
+        Order order = (Order) getSession().get(Order.class, id);
         return order;
     }
 
     @Override
     public void update(Order order) {
-        Session session = this.sessionFactory.getCurrentSession();
-        session.update(order);
+        getSession().update(order);
     }
 }
