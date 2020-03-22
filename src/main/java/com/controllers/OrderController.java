@@ -3,6 +3,7 @@ package com.controllers;
 import com.domain.Order;
 import com.service.OrderService;
 import com.service.OrderServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -17,7 +18,8 @@ import java.util.List;
 
 @Controller
 public class OrderController {
-    OrderService orderService = new OrderServiceImpl();
+    @Autowired
+    OrderService orderService;
 
     @GetMapping("/")
     public String mainPage() {
@@ -95,6 +97,7 @@ public class OrderController {
         model.addAttribute("orderList", orderList);
         return "edit-form";
     }
+
     @RequestMapping(value = "/edit-order", method = RequestMethod.POST)
     public String updateOrder(@ModelAttribute("order") Order order) {
         orderService.update(order);

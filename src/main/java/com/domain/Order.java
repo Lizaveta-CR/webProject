@@ -4,14 +4,15 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "Order")
+@Table(name = "ORDER")
 public class Order implements Serializable {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column(name = "name")
+    @Column(name = "NAME")
     private String name;
-    @Column(name = "price")
+    @Column(name = "PRICE")
     private Double price;
 
     public Order() {
@@ -39,14 +40,5 @@ public class Order implements Serializable {
 
     public void setPrice(Double price) {
         this.price = price;
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                '}';
     }
 }

@@ -1,13 +1,17 @@
 package com.repository;
 
 import com.domain.Order;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Repository
+@Transactional
 public class OrderRepositoryImpl implements OrderRepository {
     @Autowired
     private SessionFactory sessionFactory;
@@ -18,8 +22,9 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     @SuppressWarnings("unchecked")
     public List<Order> getAll() {
-        Criteria criteria = getSession().createCriteria(Order.class);
-        return (List) criteria.list();
+        Query from_order = getSession().createQuery("from Order");
+        List resultList = from_order.getResultList();
+        return resultList;
     }
 
     @Override
